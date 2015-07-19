@@ -6,31 +6,12 @@
 
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
+    <link rel='stylesheet' href='/static/default.css'>
 
     <script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js'></script>
-    <title>bitty.bio</title>
-
-    <script type='text/javascript'>
-    $(function() {
-        $('.net-button').click(function() {
-            window.location.href += '/' + $(this).val();
-        });
-    });
-    </script>
-
-    <style>
-        body {
-            padding-top: 40px;
-            background-color: #eee;
-        }
-        .courier {
-            font-family: 'Courier';
-        }
-        .light {
-            color: #888;
-        }
-    </style>
+    <script src='/static/default.js'></script>
+    <title>{{ user }} - bitty.bio</title>
 </head>
 <body>
 <div class='container'>
@@ -38,16 +19,38 @@
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-default'>
                 <div class='panel-body'>
-                    <div class='well well-sm'>
-                        <h1><small>bb@</small>{{ user }}</h1>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <a href='#' class='thumbnail'>
+                                <img src='.' alt='YEAH'>
+                            </a>
+                            <div class='well well-sm'>
+                                <h1><small>bb@</small>{{ user }}</h1>
+                            </div>
+                        </div>
                     </div>
-                    A bio or something might go here.
+                    <div class='row'>
+                        <div class='col-md-6'>
+                            <p id='bio'>
+                                A bio or something might go here.
+                            </p>
+                        </div>
+                        <div class='col-md-6'>
+                            <ul class='list-group char-align'>
+                            {% for net in nets %}
+                                <button type='button' class='list-group-item net-button' value='{{net.net}}'>
+                                    <span class='left'>
+                                        <small class='courier light'>{{ net.net }}@</small>
+                                    </span>
+                                    <span class='right'>
+                                        <strong>{{ net.url }}</strong>
+                                    </span>
+                                </button>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <ul class='list-group'>
-                {% for nname, username in sns.iteritems() %}
-                    <button type='button' class='list-group-item net-button' value='{{nname}}'><small class='courier light'>{{ nname }}</small>@{{ username }}</button>
-                {% endfor %}
-                </ul>
             </div>
         </div>
     </div>

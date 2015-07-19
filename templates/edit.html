@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
+    <link rel='stylesheet' href='/static/default.css'>
+
+    <script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js'></script>
+    <script src='/static/default.js'></script>
+    <title>bitty.bio - EDIT {{ user }}</title>
+
+    <style>
+        #nets-container {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-6 col-md-offset-3'>
+            <div class='panel panel-default'>
+                <div class='panel-body'>
+                    <div class='well well-sm'>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="user-addon"><small>bb@</small></span>
+                            <input type="text" class="form-control" placeholder="Username" value="{{ user }}" described-by="user-addon">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><small>Save</small></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio-area">Bio:</label>
+                        <textarea class="form-control" rows="4" id="bio-area"></textarea>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div id='nets-container'>
+                        <ul class='list-group' style='width: 100%;'>
+                        {% for net in nets %}
+                            <div class='input-group' style='width: 100%;'>
+                                <select class='form-control' style='width: 15%;'>
+                                    <option {% if net.net == 'fb' %}selected{% endif %}>fb</option>
+                                    <option {% if net.net == 'tw' %}selected{% endif %}>tw</option>
+                                    <option {% if net.net == 'tu' %}selected{% endif %}>tu</option>
+                                    <option {% if net.net == 'hn' %}selected{% endif %}>hn</option>
+                                    <option {% if net.net == 're' %}selected{% endif %}>re</option>
+                                    <option {% if net.net == 'site' %}selected{% endif %}>site</option>
+                                </select>
+                                <input type='text' class='form-control' placeholder='Username' value='{{ net.url }}' style='width: 85%;'>
+                            </div>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
